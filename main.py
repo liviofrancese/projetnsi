@@ -1,5 +1,6 @@
 import pyxel
 import math
+# je me suis servi de ce tuto pour faire ce raycasting : https://lodev.org/cgtutor/raycasting.html
 
 WIDTH = 1280
 HEIGHT = 720
