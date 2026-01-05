@@ -10,7 +10,7 @@ NUM_RAYS = 320
 RAY_WIDTH = WIDTH / NUM_RAYS
 MAX_DEPTH = 400
 
-pyxel.init(WIDTH, HEIGHT, title="Optimized 3D Maze", fps=60)
+pyxel.init(WIDTH, HEIGHT, title="Maze3D", fps=60)
 
 MAZE = [#jai pas reussi (encore) a faire un algo de generation de labyrinthe donc c'est un labyrinthe fixe
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
