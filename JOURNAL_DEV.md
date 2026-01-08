@@ -40,3 +40,11 @@ On commence à avoir une idée de comment passer de la théorie à quelque chose
 
 **Test d’un premier code** de raycasting : j’ai réussi à faire fonctionner un code très simple qui affiche une vue 2.5/3D
 -meme si le rendu est très basique, ça prouve que le raycasting fonctionne et qu’on peut l’améliorer
+
+---
+
+## 📅 08/01/2026
+
+### Tâches Réalisées
+
+**Optmisation légere du code**, puis j'ai lu la plupart du temps des documentations sur la génération aléatoire de labyrinthes, mais je crois je vais faire une map fixe. Le but pour la prochaine séance est d'avoir un mouvement de caméra lié a la position x,y de la souris; et mettre des textures sur les murs pour enlever l'effect "schizophrène" actuel.
