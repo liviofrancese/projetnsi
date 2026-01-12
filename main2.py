@@ -3,8 +3,6 @@ import math
 import vlc
 from pathlib import Path
 
-#soyez sur que 'song1.mp3' n'est pas song1.mp3.mp3 et pour libary vlc pip install python-vlc
-
 SCREEN_WIDTH = 2560
 SCREEN_HEIGHT = 1440
 
@@ -12,30 +10,30 @@ MAP_WIDTH = 24
 MAP_HEIGHT = 24
 
 worldMap = [
-  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1],
-  [1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1],
-  [1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],    
-  [1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1],
+    [1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1],
+    [1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],    
+    [1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 
 class App:
@@ -53,19 +51,24 @@ class App:
         self.planeX = 0
         self.planeY = 0.66
 
+        # nextbot init
+        self.botX = 5
+        self.botY = 5
+
         pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Pyxel Raycaster")
         pyxel.mouse(True)
 
-        #store mousex
+        # store mousex
         self.last_mouse_x = pyxel.mouse_x
 
         pyxel.run(self.update, self.draw)
 
     def update(self):
         moveSpeed = 0.2
+        botSpeed = 0.1
         sensitivity = 0.003  # mouse sensitivity
 
-        #mouvement
+        # player movement
         if pyxel.btn(pyxel.KEY_UP):
             if worldMap[int(self.posX + self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX += self.dirX * moveSpeed
@@ -78,7 +81,7 @@ class App:
             if worldMap[int(self.posX)][int(self.posY - self.dirY * moveSpeed)] == 0:
                 self.posY -= self.dirY * moveSpeed
 
-        #mouse deltax
+        # mouse deltax
         mouse_dx = pyxel.mouse_x - self.last_mouse_x
         angle = -mouse_dx * sensitivity
 
@@ -91,12 +94,26 @@ class App:
             self.planeX = self.planeX * math.cos(angle) - self.planeY * math.sin(angle)
             self.planeY = oldPlaneX * math.sin(angle) + self.planeY * math.cos(angle)
 
-        #mouse pos upd
+        # mouse pos upd
         self.last_mouse_x = pyxel.mouse_x
+
+        # nextbot simple follow with collision
+        dx = self.posX - self.botX
+        dy = self.posY - self.botY
+        dist = math.hypot(dx, dy)
+        if dist > 0.1:
+            moveX = (dx / dist) * botSpeed
+            moveY = (dy / dist) * botSpeed
+            # collision check
+            if worldMap[int(self.botX + moveX)][int(self.botY)] == 0:
+                self.botX += moveX
+            if worldMap[int(self.botX)][int(self.botY + moveY)] == 0:
+                self.botY += moveY
 
     def draw(self):
         pyxel.cls(0)
 
+        # draw world
         for x in range(SCREEN_WIDTH):
             cameraX = 2 * x / SCREEN_WIDTH - 1
             rayDirX = self.dirX + self.planeX * cameraX
@@ -144,7 +161,6 @@ class App:
                 perpWallDist = sideDistY - deltaDistY
 
             lineHeight = int(SCREEN_HEIGHT / perpWallDist)
-
             drawStart = max(0, -lineHeight // 2 + SCREEN_HEIGHT // 2)
             drawEnd = min(SCREEN_HEIGHT - 1, lineHeight // 2 + SCREEN_HEIGHT // 2)
 
@@ -154,4 +170,17 @@ class App:
 
             pyxel.line(x, drawStart, x, drawEnd, color)
 
+        # draw nextbot once per frame
+        dx = self.botX - self.posX
+        dy = self.botY - self.posY
+        invDet = 1.0 / (self.planeX * self.dirY - self.dirX * self.planeY)
+        transformX = invDet * (self.dirY * dx - self.dirX * dy)
+        transformY = invDet * (-self.planeY * dx + self.planeX * dy)
+        if transformY > 0:
+            spriteScreenX = int((SCREEN_WIDTH / 2) * (1 + transformX / transformY))
+            spriteHeight = int(SCREEN_HEIGHT / transformY)
+            drawStartY = max(0, SCREEN_HEIGHT//2 - spriteHeight//2)
+            drawEndY = min(SCREEN_HEIGHT-1, SCREEN_HEIGHT//2 + spriteHeight//2)
+            pyxel.line(spriteScreenX, drawStartY, spriteScreenX, drawEndY, 10)
 
+App()
