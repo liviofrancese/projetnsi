@@ -39,7 +39,7 @@ worldMap = [
 
 class App:
     def __init__(self):
-        self.player = vlc.MediaPlayer(r"\\0641-SRV-FILES\perso\ELEVES_LYC\1ERE04\FRANCESE\Documents\NSI\projetnsi\song1.mp3")
+        self.player = vlc.MediaPlayer(r"\\0641-SRV-FILES\perso\ELEVES_LYC\1ERE04\FRANCESE\Documents\NSI\projetnsi\song2.mp3")
 
 
         self.player.play()
