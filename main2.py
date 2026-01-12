@@ -36,7 +36,7 @@ worldMap = [
 
 class App:
     def __init__(self):
-        # Player state
+        # pl init state
         self.posX = 22
         self.posY = 12
         self.dirX = -1
@@ -47,7 +47,7 @@ class App:
         pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Pyxel Raycaster")
         pyxel.mouse(True)
 
-        # Store previous mouse X to compute delta
+        #store mousex
         self.last_mouse_x = pyxel.mouse_x
 
         pyxel.run(self.update, self.draw)
@@ -56,7 +56,7 @@ class App:
         moveSpeed = 0.2
         sensitivity = 0.003  # mouse sensitivity
 
-        # Movement
+        #mouvement
         if pyxel.btn(pyxel.KEY_UP):
             if worldMap[int(self.posX + self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX += self.dirX * moveSpeed
@@ -69,7 +69,7 @@ class App:
             if worldMap[int(self.posX)][int(self.posY - self.dirY * moveSpeed)] == 0:
                 self.posY -= self.dirY * moveSpeed
 
-        # Mouse look: use delta X
+        #mouse deltax
         mouse_dx = pyxel.mouse_x - self.last_mouse_x
         angle = -mouse_dx * sensitivity
 
@@ -82,7 +82,7 @@ class App:
             self.planeX = self.planeX * math.cos(angle) - self.planeY * math.sin(angle)
             self.planeY = oldPlaneX * math.sin(angle) + self.planeY * math.cos(angle)
 
-        # Update last mouse position for next frame
+        #mouse pos upd
         self.last_mouse_x = pyxel.mouse_x
 
     def draw(self):
