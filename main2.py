@@ -1,11 +1,12 @@
 import pyxel
 import math
 import vlc
+from pathlib import Path
 
 #soyez sur que 'song1.mp3' n'est pas song1.mp3.mp3 et pour libary vlc pip install python-vlc
 
-SCREEN_WIDTH = 1080
-SCREEN_HEIGHT = 720
+SCREEN_WIDTH = 2560
+SCREEN_HEIGHT = 1440
 
 MAP_WIDTH = 24
 MAP_HEIGHT = 24
@@ -31,7 +32,7 @@ worldMap = [
   [1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
   [1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
   [1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+  [1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],    
   [1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
   [1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
@@ -39,9 +40,9 @@ worldMap = [
 
 class App:
     def __init__(self):
-        self.player = vlc.MediaPlayer(r"\\0641-SRV-FILES\perso\ELEVES_LYC\1ERE04\FRANCESE\Documents\NSI\projetnsi\song2.mp3")
-
-
+        base_dir = Path(__file__).resolve().parent
+        song_path = base_dir / "song2.mp3"
+        self.player = vlc.MediaPlayer(str(song_path))
         self.player.play()
 
         # pl init state
