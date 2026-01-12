@@ -36,6 +36,7 @@ worldMap = [
 
 class App:
     def __init__(self):
+        # Player state
         self.posX = 22
         self.posY = 12
         self.dirX = -1
@@ -44,48 +45,45 @@ class App:
         self.planeY = 0.66
 
         pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Pyxel Raycaster")
+        pyxel.mouse(True)
+
+        # Store previous mouse X to compute delta
+        self.last_mouse_x = pyxel.mouse_x
+
         pyxel.run(self.update, self.draw)
 
     def update(self):
         moveSpeed = 0.2
-        rotSpeed = 0.05
+        sensitivity = 0.003  # mouse sensitivity
 
-        #go forward
+        # Movement
         if pyxel.btn(pyxel.KEY_UP):
             if worldMap[int(self.posX + self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX += self.dirX * moveSpeed
             if worldMap[int(self.posX)][int(self.posY + self.dirY * moveSpeed)] == 0:
                 self.posY += self.dirY * moveSpeed
 
-        #go backward
         if pyxel.btn(pyxel.KEY_DOWN):
             if worldMap[int(self.posX - self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX -= self.dirX * moveSpeed
             if worldMap[int(self.posX)][int(self.posY - self.dirY * moveSpeed)] == 0:
                 self.posY -= self.dirY * moveSpeed
 
-        #rotatecamera right
-        if pyxel.btn(pyxel.KEY_RIGHT):
+        # Mouse look: use delta X
+        mouse_dx = pyxel.mouse_x - self.last_mouse_x
+        angle = -mouse_dx * sensitivity
+
+        if angle != 0:
             oldDirX = self.dirX
-            self.dirX = self.dirX * math.cos(-rotSpeed) - self.dirY * math.sin(-rotSpeed)
-            self.dirY = oldDirX * math.sin(-rotSpeed) + self.dirY * math.cos(-rotSpeed)
+            self.dirX = self.dirX * math.cos(angle) - self.dirY * math.sin(angle)
+            self.dirY = oldDirX * math.sin(angle) + self.dirY * math.cos(angle)
 
             oldPlaneX = self.planeX
-            self.planeX = self.planeX * math.cos(-rotSpeed) - self.planeY * math.sin(-rotSpeed)
-            self.planeY = oldPlaneX * math.sin(-rotSpeed) + self.planeY * math.cos(-rotSpeed)
+            self.planeX = self.planeX * math.cos(angle) - self.planeY * math.sin(angle)
+            self.planeY = oldPlaneX * math.sin(angle) + self.planeY * math.cos(angle)
 
-        #rotate camera left
-        if pyxel.btn(pyxel.KEY_LEFT):
-            oldDirX = self.dirX
-            self.dirX = self.dirX * math.cos(rotSpeed) - self.dirY * math.sin(rotSpeed)
-            self.dirY = oldDirX * math.sin(rotSpeed) + self.dirY * math.cos(rotSpeed)
-
-            oldPlaneX = self.planeX
-            self.planeX = self.planeX * math.cos(rotSpeed) - self.planeY * math.sin(rotSpeed)
-            self.planeY = oldPlaneX * math.sin(rotSpeed) + self.planeY * math.cos(rotSpeed)
-
-
-
+        # Update last mouse position for next frame
+        self.last_mouse_x = pyxel.mouse_x
 
     def draw(self):
         pyxel.cls(0)
