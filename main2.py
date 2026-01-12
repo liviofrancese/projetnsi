@@ -1,5 +1,8 @@
 import pyxel
 import math
+import vlc
+
+#soyez sur que 'song1.mp3' n'est pas song1.mp3.mp3 et pour libary vlc pip install python-vlc
 
 SCREEN_WIDTH = 1080
 SCREEN_HEIGHT = 720
@@ -36,6 +39,11 @@ worldMap = [
 
 class App:
     def __init__(self):
+        self.player = vlc.MediaPlayer(r"\\0641-SRV-FILES\perso\ELEVES_LYC\1ERE04\FRANCESE\Documents\NSI\projetnsi\song1.mp3")
+
+
+        self.player.play()
+
         # pl init state
         self.posX = 22
         self.posY = 12
