@@ -97,7 +97,7 @@ class App:
         # mouse pos upd
         self.last_mouse_x = pyxel.mouse_x
 
-        # nextbot simple follow with collision
+        # nextbot simple follow collision
         dx = self.posX - self.botX
         dy = self.posY - self.botY
         dist = math.hypot(dx, dy)
