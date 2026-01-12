@@ -6,7 +6,7 @@ from pathlib import Path
 #soyez sur que 'song1.mp3' n'est pas song1.mp3.mp3 et pour libary vlc pip install python-vlc
 
 SCREEN_WIDTH = 2560
-SCREEN_HEIGHT = 1440
+SCREEN_HEIGHT = 14
 
 MAP_WIDTH = 24
 MAP_HEIGHT = 24
