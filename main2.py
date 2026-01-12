@@ -155,4 +155,3 @@ class App:
             pyxel.line(x, drawStart, x, drawEnd, color)
 
 
-App()
