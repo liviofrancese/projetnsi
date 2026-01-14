@@ -55,7 +55,7 @@ class App:
         self.botX = 5
         self.botY = 5
 
-        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, title="Pyxel Raycaster")
+        pyxel.init(SCREEN_WIDTH, SCREEN_HEIGHT, fps=30, title="Pyxel Raycaster")
         pyxel.mouse(True)
 
         # store mousex
