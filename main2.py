@@ -68,7 +68,8 @@ class App:
         botSpeed = 0.1
         sensitivity = 0.003  # mouse sensitivity
 
-        # player movement
+        # player movement 
+        rotSpeed = 0.15 #sets player rotation speed
         if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.KEY_Z):
             if worldMap[int(self.posX + self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX += self.dirX * moveSpeed
@@ -80,6 +81,27 @@ class App:
                 self.posX -= self.dirX * moveSpeed
             if worldMap[int(self.posX)][int(self.posY - self.dirY * moveSpeed)] == 0:
                 self.posY -= self.dirY * moveSpeed
+
+        if pyxel.btn(pyxel.KEY_LEFT) or pyxel.btn(pyxel.KEY_Q):
+            angle = rotSpeed
+            oldDirX = self.dirX
+            self.dirX = self.dirX * math.cos(angle) - self.dirY * math.sin(angle)
+            self.dirY = oldDirX * math.sin(angle) + self.dirY * math.cos(angle)
+
+            oldPlaneX = self.planeX
+            self.planeX = self.planeX * math.cos(angle) - self.planeY * math.sin(angle)
+            self.planeY = oldPlaneX * math.sin(angle) + self.planeY * math.cos(angle)
+
+        # rotate right (RIGHT arrow or D key)
+        if pyxel.btn(pyxel.KEY_RIGHT) or pyxel.btn(pyxel.KEY_D):
+            angle = -rotSpeed
+            oldDirX = self.dirX
+            self.dirX = self.dirX * math.cos(angle) - self.dirY * math.sin(angle)
+            self.dirY = oldDirX * math.sin(angle) + self.dirY * math.cos(angle)
+
+            oldPlaneX = self.planeX
+            self.planeX = self.planeX * math.cos(angle) - self.planeY * math.sin(angle)
+            self.planeY = oldPlaneX * math.sin(angle) + self.planeY * math.cos(angle)
 
         # mouse deltax
         mouse_dx = pyxel.mouse_x - self.last_mouse_x
