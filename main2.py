@@ -69,13 +69,13 @@ class App:
         sensitivity = 0.003  # mouse sensitivity
 
         # player movement
-        if pyxel.btn(pyxel.KEY_UP):
+        if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.KEY_Z):
             if worldMap[int(self.posX + self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX += self.dirX * moveSpeed
             if worldMap[int(self.posX)][int(self.posY + self.dirY * moveSpeed)] == 0:
                 self.posY += self.dirY * moveSpeed
 
-        if pyxel.btn(pyxel.KEY_DOWN):
+        if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.KEY_S):
             if worldMap[int(self.posX - self.dirX * moveSpeed)][int(self.posY)] == 0:
                 self.posX -= self.dirX * moveSpeed
             if worldMap[int(self.posX)][int(self.posY - self.dirY * moveSpeed)] == 0:
